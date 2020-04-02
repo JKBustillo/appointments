@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-const Form = () => {
+const Form = ({ crearCita }) => {
     const [cita, setCita] = useState({
         mascota: '',
         propietario: '',
@@ -22,12 +23,29 @@ const Form = () => {
     const submitCita = e => {
         e.preventDefault();
 
+        // Validación
         if (mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '') {
             setError(true);
             return;
         }
 
-        console.log('Enviando form');
+        // Quita mensaje de error en caso de estar
+        setError(false);
+
+        // Asigna un id a la cita actual
+        cita.id = uuidv4();
+
+        // Crea nueva cita
+        crearCita(cita);
+
+        // Reiniciar form
+        setCita({
+            mascota: '',
+            propietario: '',
+            fecha: '',
+            hora: '',
+            sintomas: ''
+        });
     };
 
     return ( 
