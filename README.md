@@ -1,6 +1,6 @@
 # Appointments
 
-Web app to manage the appointments in a veterinary.
+Web app to manage the appointments in a veterinary. Data is saved in localStorage.
 
 ## Project Setup
 
